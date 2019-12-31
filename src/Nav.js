@@ -5,7 +5,7 @@ import React from "react";
 const Nav = () => (
     <nav className="alert alert-primary">
         <div className="container">
-            <a href="#" className="">Time Live - Front</a>
+            <a href="#" className="">Time Live</a>
         </div>
     </nav>
 )

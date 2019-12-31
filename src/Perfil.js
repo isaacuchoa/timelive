@@ -8,16 +8,20 @@ const Perfil = ({user}) => (
                     <img className="card-img-top" src={user.avatar_url}/>
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">
-                                Repositórios:
-                                <span className="badge badge-success">{user.public_repos}</span>
+                                Apelido:
+                                <span className="badge badge-success">{user.login}</span>
                             </li>
                             <li className="list-group-item">
-                                Seguidores:
-                                <span className="badge badge-success">{user.followers}</span>
+                                Biografia:
+                                <span className="badge badge-success">{user.bio}</span>
                             </li>
                             <li className="list-group-item">
-                                Seguindo:
-                                <span className="badge badge-success">{user.following}</span>
+                                URL:
+                                <span className="badge badge-success">{user.url}</span>
+                            </li>
+                            <li className="list-group-item">
+                                Repositórios curtidos:
+                                <span className="badge badge-success">{user.starred_url}</span>
                             </li>
                         </ul>                   
                 </div>

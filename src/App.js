@@ -37,9 +37,8 @@ class App extends Component {
       <Nav/>
       <div className="container">
         <div className="card card-body">
-          <h1>Pesquisar usuários do github</h1>
-          <p className="lead">Digite um nome</p>
-          <input onChange={this.getUser} id="buscar" type="text" className="form-control"></input>
+          <h1>Usuários:</h1>
+            <input onChange={this.getUser} id="buscar" type="text" className="form-control" placeholder="Digite aqui seu usuário"></input>
         </div>
         {user.length !== 0 ? <Perfil user={user}/> : null}
       </div>
