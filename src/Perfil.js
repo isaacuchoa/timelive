@@ -17,12 +17,9 @@ const Perfil = ({user}) => (
                             </li>
                             <li className="list-group-item">
                                 URL:
-                                <span className="badge badge-success">{user.url}</span>
+                                <span className="badge badge-success">{user.html_url}</span>
                             </li>
-                            <li className="list-group-item">
-                                Repositórios curtidos:
-                                <span className="badge badge-success">{user.starred_url}</span>
-                            </li>
+                           
                         </ul>                   
                 </div>
             </div>

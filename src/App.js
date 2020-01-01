@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './Nav';
 import Perfil from './Perfil';
+import Repo from './Repo';
 import axios from 'axios';
 
 
@@ -28,19 +29,38 @@ class App extends Component {
           .get(
           `${url}/${user}?client_id=${client_id}&client_secret=${client_secret}`
           ).then(({data}) => this.setState({user: data}));
+      axios
+          .get(
+          `${url}/${user}/repos?per_page=${count}&sort=${sort}&client_id=${client_id}&
+           client_secret=${client_secret}`).then(({data}) => this.setState({repos: data}));
   }
   
-  render(){
-    const {user} = this.state;
+  renderPerfil = () =>{
+    const {user, repos} = this.state;
+
+    return(
+      <div className="row">
+        <div className="col-md-7 mt-4">
+            <Perfil user={user}></Perfil>                     
+        </div>
+        <div className="col-md-5 mt-6">
+         {repos.map(repo => <Repo key={repo.url} repo={repo} />)}
+         </div>              
+      </div>
+    )
+  }
+
+
+  render(){    
   return (
     <div className="App">
       <Nav/>
       <div className="container">
         <div className="card card-body">
           <h1>Usuários:</h1>
-            <input onChange={this.getUser} id="buscar" type="text" className="form-control" placeholder="Digite aqui seu usuário"></input>
+            <input onChange={this.getUser} id="buscar" type="text" className="form-control" placeholder="Digite aqui seu usuário"/>
         </div>
-        {user.length !== 0 ? <Perfil user={user}/> : null}
+        {this.state.user.length !== 0 ? this.renderPerfil() : null}
       </div>
     </div>
   );
