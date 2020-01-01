@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Perfil from './Perfil';
 import Repo from './Repo';
 import axios from 'axios';
+import { Map, GoogleMapReact } from 'google-maps-react';
 
 
 class App extends Component {
@@ -48,8 +49,7 @@ class App extends Component {
          </div>              
       </div>
     )
-  }
-
+  } 
 
   render(){    
   return (
@@ -62,9 +62,14 @@ class App extends Component {
         </div>
         {this.state.user.length !== 0 ? this.renderPerfil() : null}
       </div>
-    </div>
+    </div> 
+
+     
   );
   }
 }
 
 export default App;
+
+
+
