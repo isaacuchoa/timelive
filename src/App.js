@@ -3,7 +3,7 @@ import Nav from './Nav';
 import Perfil from './Perfil';
 import Repo from './Repo';
 import axios from 'axios';
-import { Map, GoogleMapReact } from 'google-maps-react';
+import SimpleMap from './Location';
 
 
 class App extends Component {
@@ -40,20 +40,26 @@ class App extends Component {
     const {user, repos} = this.state;
 
     return(
-      <div className="row">
-        <div className="col-md-7 mt-4">
+      
+      
+      <div className="row">          
+       <div className="col-md-7 mt-4">
             <Perfil user={user}></Perfil>                     
         </div>
-        <div className="col-md-5 mt-6">
+        <div className="col-md-5 mt-4">
          {repos.map(repo => <Repo key={repo.url} repo={repo} />)}
-         </div>              
+         </div>
+         <SimpleMap/>                    
       </div>
-    )
-  } 
 
+    );
+  }
+
+ 
   render(){    
   return (
     <div className="App">
+     
       <Nav/>
       <div className="container">
         <div className="card card-body">
@@ -62,10 +68,11 @@ class App extends Component {
         </div>
         {this.state.user.length !== 0 ? this.renderPerfil() : null}
       </div>
-    </div> 
-
      
-  );
+    </div> 
+    
+     
+    );
   }
 }
 

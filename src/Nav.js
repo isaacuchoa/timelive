@@ -5,7 +5,11 @@ import React from "react";
 const Nav = () => (
     <nav className="alert alert-primary">
         <div className="container">
-            <a href="#" className="">Time Live</a>
+            <h2>Time Live</h2>
+            <div className="row"  >
+                <a href="#" className="">Home</a>
+                <a href="#" className="">Localização</a>
+            </div>
         </div>
     </nav>
 )
