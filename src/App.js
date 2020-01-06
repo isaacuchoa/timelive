@@ -3,8 +3,7 @@ import Nav from './Nav';
 import Perfil from './Perfil';
 import Repo from './Repo';
 import axios from 'axios';
-import SimpleMap from './Location';
-
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 class App extends Component {
   constructor(){
@@ -20,11 +19,11 @@ class App extends Component {
       },
       user: [],
       repos:[]
-    }    
+    } 
 
     }
     getUser = (e) => {
-      const user = e.target.value;
+      const user = e.target.value; 
       const {url, client_id, client_secret, count, sort} = this.state.github;
       axios
           .get(
@@ -32,34 +31,37 @@ class App extends Component {
           ).then(({data}) => this.setState({user: data}));
       axios
           .get(
-          `${url}/${user}/repos?per_page=${count}&sort=${sort}&client_id=${client_id}&
+          `${url}/${user}/repos/starred?per_page=${count}&sort=${sort}&client_id=${client_id}&
            client_secret=${client_secret}`).then(({data}) => this.setState({repos: data}));
   }
   
   renderPerfil = () =>{
     const {user, repos} = this.state;
-
-    return(
-      
-      
-      <div className="row">          
-       <div className="col-md-7 mt-4">
-            <Perfil user={user}></Perfil>                     
+    return( 
+      <div className='container'>      
+        <div className="row">          
+          <div className="col-md-7 mt-4">
+                <Perfil user={user}></Perfil>                     
+          </div>
+          <div className="col-md-5 mt-4">
+            {repos.map(repo => <Repo key={repo.url} repo={repo} />)}
+          </div>                            
         </div>
-        <div className="col-md-5 mt-4">
-         {repos.map(repo => <Repo key={repo.url} repo={repo} />)}
-         </div>
-         <SimpleMap/>                    
-      </div>
+        <div className='row'>
+        <Map google={this.props.google} zoom={5}> 
+        <Marker onClick={this.onMarkerClick}
+                name={'Current location'} /> 
+       
+        </Map>
+        </div>
+      </div>  
 
     );
   }
-
  
   render(){    
   return (
-    <div className="App">
-     
+    <div className="App">     
       <Nav/>
       <div className="container">
         <div className="card card-body">
@@ -67,16 +69,18 @@ class App extends Component {
             <input onChange={this.getUser} id="buscar" type="text" className="form-control" placeholder="Digite aqui seu usuário"/>
         </div>
         {this.state.user.length !== 0 ? this.renderPerfil() : null}
-      </div>
-     
+      </div>     
     </div> 
-    
      
     );
   }
 }
 
-export default App;
+export default GoogleApiWrapper({
+  apiKey: ('API Key')
+})(App)
+
+
 
 
 

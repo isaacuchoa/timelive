@@ -5,7 +5,7 @@ const Repo = ({repo}) => (
 <a href="repo.html_url" target="_blank">{repo.starred_url}</a>
         </div>
         <div className="col-md-6">
-            <span className="badge badge-primary">Estrelas:{}</span>            
+            <span className="badge badge-primary">Estrelas:{repo.starred_url}</span>            
         </div>
     </div>
 
