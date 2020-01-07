@@ -12,7 +12,26 @@ code {
     monospace;
 }
 
-nav {
-      margin-left: 10;
-      color: #000000;
+.logo {
+        margin:0 auto;
+        width: 300px;
+        height: 80px;
+        font-weight: bold                                 ;
+        background-image: url(img/logo.png);
+
+}
+
+.users {
+ 
+  width: 74px;
+  height: 80px;                                 ;
+  background-image: url(img/users.png);
+  background-repeat: no-repeat;
+
+}
+
+.item-card {
+       color:coral;
+       font-weight: bold;
+       padding-left: 8px;
 }
